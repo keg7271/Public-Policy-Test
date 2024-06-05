@@ -4,7 +4,7 @@ package authz.prototype
 jwks := json.marshal(data.jwks)
 
 default allow = false
-
+ 
 inputAttributes := { a | a := input.attributes.value[_] }
 
 grantedAttributes (permission) = attributes {
