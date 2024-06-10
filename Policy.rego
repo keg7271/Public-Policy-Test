@@ -1,4 +1,4 @@
-package authz.prototype
+package tic
 
 # Serialize the JWKS JSON data to a string
 jwks := json.marshal(data.jwks)
