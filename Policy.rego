@@ -1,5 +1,7 @@
 package tic
 
+import future.keywords.in
+
 # Serialize the JWKS JSON data to a string
 jwks := json.marshal(data.jwks)
 
@@ -16,9 +18,10 @@ allow {
     ssoId := verifyToken
 
     # Bind the user entitlements
-    principal := data.users[ssoId]
-
-    authorizeRequest(principal)
+    # principal := data.users[ssoId] # Dictionary-based
+    some user in data.users
+    user.ssoId == ssoId
+    authorizeRequest(user)
 }
 
 #allow {
@@ -35,7 +38,7 @@ allow {
 
 authorizeRequest(principal) {
     # Bind the resource the user is accessing.
-    resource := principal[input.resource]
+    resource := principal["privileges"][input.resource]
 
     # Bind the action (permission) the user is permforming.
     permission := resource[input.permission]
