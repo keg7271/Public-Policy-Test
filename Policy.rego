@@ -4,7 +4,7 @@ import future.keywords.in
 
 # Serialize the JWKS JSON data to a string
 jwks := json.marshal(data.jwks)
-
+ 
 default allow = false
  
 inputAttributes := { a | a := input.attributes.value[_] }
